@@ -1,10 +1,10 @@
-# CapyKing10
+# Celestialis Config
 
-This is a simple website showcasing the CapyKing10 community.
+This is a simple website showcasing the Celestialis config website.
 
 ## Description
 
-This website displays information about CapyKing10 and provides buttons to join their Discord server.
+This website displays information about Celestialis and provides buttons to there socials.
 
 
 ## Features
