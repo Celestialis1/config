@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Celestialis</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+        }
+
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            filter: blur(10px);
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(148, 0, 211, 0.7);
+            margin-bottom: 40px;
+            animation: glowing 5s infinite alternate;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        @keyframes glowing {
+            0% {
+                box-shadow: 0 0 60px rgba(148, 0, 211, 0.6);
+            }
+
+            50% {
+                box-shadow: 0 0 80px rgba(148, 0, 211, 0.8);
+            }
+
+            100% {
+                box-shadow: 0 0 60px rgba(148, 0, 211, 0.6);
+            }
+        }
+
+        h1, h4, h2, h3, p {
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        h4, h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            border: 2px solid #8c32cd;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: transparent;
+            color: #9a32cd;
+            border: 2px solid #9a32cd;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+            .button:hover {
+                color: #fff;
+                background-color: #9a32cd;
+            }
+
+        .mute-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s ease;
+        }
+
+            .mute-button:hover {
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            h4, h2 {
+                font-size: 1.5em;
+                padding: 8px 16px;
+            }
+
+            h3 {
+                font-size: 1.2em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+
+            .button {
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <video id="background-video" autoplay loop muted>
+        <source src="video.mp4" type="video/mp4">
+    </video>
+    <audio id="bg-music">
+        <source src="audio.mp3" type="audio/mp3">
+    </audio>
+
+    <button class="mute-button">Mute</button>
+    <div class="container">
+        <h1>Celestialis</h1>
+        <h4>Links</h4>
+        <button class="button" onclick="window.location.href='https://discord.gg/8yj7AsyGe2'">Discord</button>
+        <h2>Info</h2>
+        <div class="info">
+            <p>Info about stuff will be here</p>
+        </div>
+        <h2>Friends</h2>
+        <h3>Laserspyy CapyKing10</h3>
+        <h3>Laserspyy CapyKing10</h3>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var audio = document.getElementById("bg-music");
+            var isAudioPlayed = false;
+
+            document.addEventListener('mousemove', playAudio);
+            document.addEventListener('click', playAudio);
+
+            function playAudio() {
+                if (!isAudioPlayed) {
+                    audio.play();
+                    isAudioPlayed = true;
+                }
+            }
+
+            audio.volume = 0.6;
+            audio.currentTime = 2;
+            audio.addEventListener('ended', function () {
+                this.currentTime = 0;
+                this.play();
+            }, false);
+        });
+
+        var muteButton = document.querySelector('.mute-button');
+        var backgroundAudio = document.getElementById('bg-music');
+
+        muteButton.addEventListener('click', function () {
+            if (backgroundAudio.muted) {
+                backgroundAudio.muted = false;
+                muteButton.textContent = 'Mute';
+            } else {
+                backgroundAudio.muted = true;
+                muteButton.textContent = 'Unmute';
+            }
+        });
+    </script>
+</body>
+</html>
